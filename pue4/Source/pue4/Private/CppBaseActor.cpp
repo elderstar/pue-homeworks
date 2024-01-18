@@ -8,17 +8,16 @@ ACppBaseActor::ACppBaseActor()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
-	SetRootComponent(mesh);
+	Mesh = CreateDefaultSubobject<UStaticMeshComponent>("Mesh");
+	SetRootComponent(Mesh);
 }
 
 // Called when the game starts or when spawned
 void ACppBaseActor::BeginPlay()
 {
 	Super::BeginPlay();
-	InitialLocation = FVector(0.0f, 0.0f, 70.0f);
-	SetActorLocation(InitialLocation);
-	world = GetWorld();
+	InitialLocation = GetActorLocation();
+	World = GetWorld();
 }
 
 // Called every frame
@@ -30,7 +29,7 @@ void ACppBaseActor::Tick(float DeltaTime)
 void ACppBaseActor::SinMovement()
 {
 	
-	float z = Amplitude * FMath::Sin(Frequency * world->GetTimeSeconds());
+	float z = Amplitude * FMath::Sin(Frequency * World->GetTimeSeconds());
 
 	SetActorLocation(FVector(InitialLocation.X, InitialLocation.Y, InitialLocation.Z + z));
 }

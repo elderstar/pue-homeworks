@@ -24,7 +24,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(VisibleAnywhere)
-	UStaticMeshComponent* mesh;
+	UStaticMeshComponent* Mesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Amplitude = 50;
@@ -32,12 +32,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Frequency = 5;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY(EditInstanceOnly, BlueprintReadOnly)
 	FVector InitialLocation;
 
 private:
 	UFUNCTION(BlueprintCallable)
 	void SinMovement();
 	UPROPERTY()
-	UWorld* world;
+	UWorld* World;
 };
